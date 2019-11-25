@@ -1,15 +1,14 @@
 import React, { Suspense } from "react";
 import "./App.css";
 import { fetchData } from "./Api";
+import spinner from "./spinner.gif";
 
 const resource = fetchData();
 
 const App = () => (
   <div className="container my-5">
-    <Suspense fallback={<h1>Loading User..</h1>}>
+    <Suspense fallback={<Spinner />}>
       <ProfileDetails />
-    </Suspense>
-    <Suspense fallback={<h1>Loading Posts..</h1>}>
       <ProfilePosts />
     </Suspense>
   </div>
@@ -44,5 +43,13 @@ const ProfilePosts = () => {
     </ul>
   );
 };
+
+const Spinner = () => (
+  <img
+    src={spinner}
+    style={{ width: "150px", margin: "auto", display: "block" }}
+    alt="Loading..."
+  />
+);
 
 export default App;
